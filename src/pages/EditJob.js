@@ -4,7 +4,6 @@ import API from "../services/api";
 import "../App.css";
 
 function EditJob() {
-
   const { id } = useParams();
 
   const navigate = useNavigate();
@@ -18,29 +17,20 @@ function EditJob() {
   });
 
   useEffect(() => {
+    const loadJob = async () => {
+      try {
+        const res = await API.get(`/jobs/${id}`);
+        setJob(res.data);
+      } catch (error) {
+        console.error(error);
+        alert("Failed to load job details");
+      }
+    };
+
     loadJob();
-  }, []);
-
-  const loadJob = async () => {
-
-    try {
-
-      const res = await API.get(
-        `/jobs/${id}`
-      );
-
-      setJob(res.data);
-
-    } catch (error) {
-
-      console.error(error);
-
-      alert("Failed to load job details");
-    }
-  };
+  }, [id]);
 
   const handleChange = (e) => {
-
     setJob({
       ...job,
       [e.target.name]: e.target.value
@@ -48,7 +38,6 @@ function EditJob() {
   };
 
   const updateJob = async () => {
-
     if (
       !job.title ||
       !job.company ||
@@ -61,28 +50,19 @@ function EditJob() {
     }
 
     try {
-
-      await API.put(
-        `/jobs/${id}`,
-        job
-      );
+      await API.put(`/jobs/${id}`, job);
 
       alert("✅ Job Updated Successfully");
 
       navigate("/jobs");
-
     } catch (error) {
-
       console.error(error);
-
       alert("❌ Update Failed");
     }
   };
 
   return (
-
     <div className="job-form">
-
       <h1>✏️ Edit Job</h1>
 
       <p
@@ -143,25 +123,17 @@ function EditJob() {
           marginTop: "20px"
         }}
       >
-
-        <button
-          onClick={updateJob}
-        >
+        <button onClick={updateJob}>
           Update Job
         </button>
 
         <button
-          onClick={() =>
-            navigate("/jobs")
-          }
+          onClick={() => navigate("/jobs")}
         >
           Cancel
         </button>
-
       </div>
-
     </div>
-
   );
 }
 
