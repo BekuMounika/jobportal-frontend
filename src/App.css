@@ -1,38 +1,542 @@
-.App {
-  text-align: center;
+/* =========================
+   GLOBAL STYLES
+========================= */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body{
+  background:#f1f5f9;
+  color:#1e293b;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+button{
+  border:none;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+button:hover{
+  transform:translateY(-2px);
+}
+
+/* =========================
+   LOGIN / REGISTER
+========================= */
+
+.auth-container{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:linear-gradient(
+      135deg,
+      #2563eb,
+      #1e40af,
+      #0f172a
+  );
+}
+
+.auth-card{
+  width:420px;
+  background:white;
+  padding:35px;
+  border-radius:20px;
+  box-shadow:0 15px 35px rgba(0,0,0,0.25);
+}
+
+.auth-card h2{
+  text-align:center;
+  color:#1e3a8a;
+  margin-bottom:25px;
+}
+
+.auth-card input{
+  width:100%;
+  padding:14px;
+  margin:10px 0;
+  border:1px solid #dbeafe;
+  border-radius:10px;
+  font-size:15px;
+}
+
+.auth-card input:focus{
+  outline:none;
+  border:1px solid #2563eb;
+}
+
+.auth-card button{
+  width:100%;
+  padding:14px;
+  margin-top:10px;
+  background:#2563eb;
+  color:white;
+  border-radius:10px;
+  font-size:15px;
+  font-weight:600;
+}
+
+.auth-card button:hover{
+  background:#1d4ed8;
+}
+
+/* =========================
+   DASHBOARD
+========================= */
+
+.dashboard{
+  display:flex;
+  min-height:100vh;
+}
+
+.sidebar{
+  width:260px;
+  background:linear-gradient(
+      180deg,
+      #1e3a8a,
+      #0f172a
+  );
+  color:white;
+  padding:25px;
+}
+
+.sidebar h2{
+  text-align:center;
+  margin-bottom:25px;
+}
+
+.sidebar p{
+  padding:14px;
+  margin-bottom:10px;
+  border-radius:10px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.sidebar p:hover{
+  background:rgba(255,255,255,0.15);
+}
+
+.main-content{
+  flex:1;
+  padding:35px;
+}
+
+.main-content h1{
+  color:#1e3a8a;
+}
+
+.cards{
+  display:flex;
+  gap:20px;
+  flex-wrap:wrap;
+  margin-top:30px;
+}
+
+.card{
+  background:white;
+  width:260px;
+  padding:25px;
+  border-radius:18px;
+  box-shadow:0 6px 15px rgba(0,0,0,0.08);
+}
+
+.card h3{
+  color:#2563eb;
+  margin-bottom:10px;
+}
+
+.card h2{
+  margin-bottom:10px;
+}
+
+/* =========================
+   JOBS PAGE
+========================= */
+
+.jobs-container{
+  max-width:1100px;
+  margin:auto;
+  padding:30px;
+}
+
+.jobs-container h1{
+  color:#1e3a8a;
+  margin-bottom:20px;
+}
+
+.search-box{
+  width:100%;
+  max-width:400px;
+  padding:12px;
+  border-radius:10px;
+  border:1px solid #cbd5e1;
+  margin-bottom:25px;
+}
+
+.job-card{
+  background:white;
+  padding:25px;
+  border-radius:15px;
+  box-shadow:0 5px 15px rgba(0,0,0,0.08);
+  margin-bottom:20px;
+}
+
+.job-card h3{
+  color:#2563eb;
+  margin-bottom:10px;
+}
+
+.job-card p{
+  margin:8px 0;
+}
+
+.job-card button{
+  background:#2563eb;
+  color:white;
+  padding:10px 16px;
+  border-radius:8px;
+  margin-right:10px;
+}
+
+.job-card button:hover{
+  background:#1d4ed8;
+}
+
+/* =========================
+   PROFILE PAGE
+========================= */
+
+.profile-card{
+  width:550px;
+  margin:60px auto;
+  background:white;
+  padding:35px;
+  border-radius:18px;
+  box-shadow:0 6px 15px rgba(0,0,0,0.1);
+}
+
+.profile-card h1{
+  text-align:center;
+  color:#1e3a8a;
+  margin-bottom:25px;
+}
+
+.profile-card p{
+  font-size:17px;
+  margin:15px 0;
+}
+
+.profile-card button{
+  background:#2563eb;
+  color:white;
+  padding:12px 20px;
+  border-radius:8px;
+}
+
+/* =========================
+   APPLICATION PAGE
+========================= */
+
+.application-card{
+  background:white;
+  padding:25px;
+  margin-bottom:20px;
+  border-radius:15px;
+  box-shadow:0 5px 12px rgba(0,0,0,0.08);
+}
+
+/* =========================
+   ADD JOB PAGE
+========================= */
+
+.job-form{
+  width:650px;
+  margin:50px auto;
+  background:white;
+  padding:35px;
+  border-radius:20px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.12);
+}
+
+.job-form h1{
+  text-align:center;
+  color:#1e3a8a;
+  margin-bottom:25px;
+}
+
+.job-form input,
+.job-form textarea{
+  width:100%;
+  padding:14px;
+  margin-bottom:15px;
+  border:1px solid #d1d5db;
+  border-radius:10px;
+  font-size:15px;
+}
+
+.job-form textarea{
+  resize:none;
+}
+
+.job-form input:focus,
+.job-form textarea:focus{
+  outline:none;
+  border-color:#2563eb;
+}
+
+.job-form button{
+  background:#2563eb;
+  color:white;
+  padding:12px 20px;
+  border-radius:10px;
+  margin-right:10px;
+}
+
+.job-form button:hover{
+  background:#1d4ed8;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:768px){
+
+  .dashboard{
+    flex-direction:column;
+  }
+
+  .sidebar{
+    width:100%;
+  }
+
+  .cards{
+    flex-direction:column;
+  }
+
+  .card{
+    width:100%;
+  }
+
+  .job-form,
+  .profile-card,
+  .auth-card{
+    width:95%;
   }
 }
+/* Applications */
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.application-card{
+  background:white;
+  padding:25px;
+  margin-bottom:20px;
+  border-radius:15px;
+  box-shadow:0 5px 15px rgba(0,0,0,0.08);
 }
 
-.App-link {
-  color: #61dafb;
+.application-card h3{
+  color:#2563eb;
+  margin-bottom:10px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.application-card p{
+  margin:8px 0;
+}
+.job-form{
+  width:650px;
+  margin:50px auto;
+  background:white;
+  padding:35px;
+  border-radius:20px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.12);
+}
+
+.job-form h1{
+  text-align:center;
+  color:#1e3a8a;
+  margin-bottom:10px;
+}
+
+.job-form input,
+.job-form textarea{
+  width:100%;
+  padding:14px;
+  margin-bottom:15px;
+  border:1px solid #d1d5db;
+  border-radius:10px;
+  font-size:15px;
+}
+
+.job-form input:focus,
+.job-form textarea:focus{
+  outline:none;
+  border-color:#2563eb;
+  box-shadow:0 0 5px rgba(37,99,235,0.3);
+}
+
+.job-form button{
+  background:#2563eb;
+  color:white;
+  padding:12px 20px;
+  border:none;
+  border-radius:10px;
+  font-size:15px;
+  font-weight:600;
+}
+
+.job-form button:hover{
+  background:#1d4ed8;
+}
+/* =========================
+   PROFILE PAGE
+========================= */
+
+.profile-card{
+  width:600px;
+  margin:60px auto;
+  background:white;
+  padding:35px;
+  border-radius:20px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.12);
+}
+
+.profile-card h1{
+  color:#1e3a8a;
+}
+
+.profile-card p{
+  font-size:16px;
+  line-height:1.8;
+}
+
+.profile-card button{
+  background:#2563eb;
+  color:white;
+  padding:12px 20px;
+  border:none;
+  border-radius:10px;
+  font-size:15px;
+  font-weight:600;
+}
+
+.profile-card button:hover{
+  background:#1d4ed8;
+}
+.sidebar{
+  width:260px;
+  background:linear-gradient(
+      180deg,
+      #1e3a8a,
+      #0f172a
+  );
+  color:white;
+  padding:25px;
+  min-height:100vh;
+}
+
+.sidebar p{
+  padding:14px;
+  border-radius:10px;
+  margin-bottom:8px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.sidebar p:hover{
+  background:rgba(255,255,255,0.15);
+}
+
+.main-content{
+  flex:1;
+  padding:35px;
+}
+
+.card{
+  background:white;
+  padding:25px;
+  border-radius:18px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.08);
+}
+
+.card:hover{
+  transform:translateY(-3px);
+  transition:0.3s;
+}
+
+.cards{
+  display:flex;
+  gap:20px;
+  flex-wrap:wrap;
+}
+
+.card h3{
+  color:#2563eb;
+}
+
+.card button{
+  background:#2563eb;
+  color:white;
+  border:none;
+  padding:12px 18px;
+  border-radius:10px;
+  cursor:pointer;
+}
+
+.card button:hover{
+  background:#1d4ed8;
+}
+/* =========================
+   EDIT JOB PAGE
+========================= */
+
+.job-form{
+  width:650px;
+  margin:50px auto;
+  background:white;
+  padding:35px;
+  border-radius:20px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.12);
+}
+
+.job-form h1{
+  text-align:center;
+  color:#1e3a8a;
+  margin-bottom:10px;
+}
+
+.job-form input,
+.job-form textarea{
+  width:100%;
+  padding:14px;
+  margin-bottom:15px;
+  border:1px solid #d1d5db;
+  border-radius:10px;
+  font-size:15px;
+}
+
+.job-form input:focus,
+.job-form textarea:focus{
+  outline:none;
+  border-color:#2563eb;
+  box-shadow:0 0 6px rgba(37,99,235,0.25);
+}
+
+.job-form button{
+  background:#2563eb;
+  color:white;
+  border:none;
+  padding:12px 20px;
+  border-radius:10px;
+  font-size:15px;
+  font-weight:600;
+  cursor:pointer;
+}
+
+.job-form button:hover{
+  background:#1d4ed8;
 }
