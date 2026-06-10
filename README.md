@@ -1,17 +1,42 @@
 # 🚀 AI Job Portal - Frontend
 
-A modern AI-powered Job Portal built using React.js that helps job seekers search jobs, apply for positions, manage profiles, and receive AI-powered career guidance.
+An AI-powered Full Stack Job Portal built using React.js that helps job seekers search jobs, apply for positions, manage applications, and leverage AI tools for career growth.
 
-## 🌟 Features
+## 🌐 Live Demo
 
-### User Features
+Frontend (Vercel)
+
+https://jobportal-frontend-nfza.vercel.app
+
+Backend API
+
+https://jobportal-backend-r02c.onrender.com
+
+## ✨ Features
+
+### Authentication
 
 * User Registration
 * User Login
-* Profile Management
+* Session Management
+
+### Job Management
+
 * Browse Jobs
+* Search Jobs
+* View Job Details
+
+### Applications
+
 * Apply for Jobs
 * Track Applications
+* Application History
+
+### Profile Management
+
+* View Profile
+* Update Profile
+* Profile Completion Status
 
 ### AI Features
 
@@ -20,12 +45,12 @@ A modern AI-powered Job Portal built using React.js that helps job seekers searc
 * Career Guidance
 * Resume Improvement Suggestions
 
-### Dashboard Features
+### Dashboard
 
 * Total Jobs
 * Total Applications
-* Profile Completion Status
-* Quick Navigation
+* Profile Status
+* Quick Actions
 
 ## 🛠️ Tech Stack
 
@@ -34,27 +59,13 @@ A modern AI-powered Job Portal built using React.js that helps job seekers searc
 * Axios
 * JavaScript
 * CSS3
+* Gemini AI API
 
-## 🌐 Deployment
+## 📦 Deployment
 
-Frontend Hosted On:
-
-* Vercel
-
-Backend Connected To:
-
-* Render / Railway
-
-## 📁 Project Structure
-
-```text
-src/
-├── pages/
-├── services/
-├── components/
-├── App.js
-└── index.js
-```
+* Frontend Hosted on Vercel
+* Connected with Spring Boot Backend
+* Cloud Ready Architecture
 
 ## 🚀 Installation
 
@@ -63,28 +74,32 @@ npm install
 npm start
 ```
 
-Application runs at:
+Application runs on:
 
 ```text
 http://localhost:3000
 ```
 
-## 📸 Main Modules
+## 🔗 Repositories
 
-* Login & Registration
-* Dashboard
-* Jobs Module
-* Applications Module
-* Profile Module
-* AI Career Assistant
-* AI Resume Analyzer
+Frontend Repository
 
-## 👨‍💻 Developer
+https://github.com/BekuMounika/jobportal-frontend
+
+Backend Repository
+
+https://github.com/BekuMounika/jobportal-backend
+
+## 👩‍💻 Developer
 
 Beku Mounika
 
 Java Full Stack Developer
 
-## 📌 Project Type
+## 📌 Highlights
 
-Full Stack Web Application
+* Full Stack Project
+* AI Powered Features
+* Cloud Deployment
+* Responsive UI
+* Real-world Job Portal Workflow
