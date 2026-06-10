@@ -10,7 +10,24 @@ export async function askGemini(question) {
     model: "gemini-2.5-flash"
   });
 
-  const result = await model.generateContent(question);
+  const prompt = `
+You are an AI Career Assistant.
+
+Answer in a professional and easy-to-read format.
+
+Rules:
+- Use short paragraphs.
+- Use bullet points where helpful.
+- Use headings when appropriate.
+- Explain clearly for students and beginners.
+- Avoid very long blocks of text.
+
+Question:
+${question}
+`;
+
+  const result =
+    await model.generateContent(prompt);
 
   return result.response.text();
 }
