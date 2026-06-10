@@ -8,6 +8,7 @@ import Applications from "./pages/Applications";
 import AddJob from "./pages/AddJob";
 import EditJob from "./pages/EditJob";
 import Profile from "./pages/Profile";
+import CareerAssistant from "./pages/CareerAssistant";
 
 function App() {
 
@@ -53,6 +54,10 @@ function App() {
         <Route
   path="/profile"
   element={<Profile />}
+/>
+<Route
+  path="/assistant"
+  element={<CareerAssistant />}
 />
 
       </Routes>

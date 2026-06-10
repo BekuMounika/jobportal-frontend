@@ -4,21 +4,28 @@ import API from "../services/api";
 import "../App.css";
 
 function Dashboard() {
+
   const navigate = useNavigate();
 
-  const user = JSON.parse(localStorage.getItem("user"));
+  const user = JSON.parse(
+    localStorage.getItem("user")
+  );
 
   const [totalJobs, setTotalJobs] = useState(0);
   const [totalApplications, setTotalApplications] = useState(0);
   const [profileStatus, setProfileStatus] = useState(0);
 
   useEffect(() => {
+
     const loadDashboardData = async () => {
+
       try {
+
         const jobsRes = await API.get("/jobs");
         setTotalJobs(jobsRes.data.length);
 
         if (user?.email) {
+
           const appRes = await API.get(
             `/applications/${user.email}`
           );
@@ -37,28 +44,38 @@ function Dashboard() {
         setProfileStatus(
           Math.round((completed / 3) * 100)
         );
+
       } catch (error) {
+
         console.error(error);
+
       }
     };
 
     loadDashboardData();
+
   }, [user]);
 
   const logout = () => {
+
     const confirmLogout = window.confirm(
       "Are you sure you want to logout?"
     );
 
     if (confirmLogout) {
+
       localStorage.clear();
+
       navigate("/login");
     }
   };
 
   return (
+
     <div className="dashboard">
+
       <div className="sidebar">
+
         <h2>💼 Job Portal</h2>
 
         <hr />
@@ -83,12 +100,18 @@ function Dashboard() {
           👤 Profile
         </p>
 
+        <p onClick={() => navigate("/assistant")}>
+          🤖 AI Career Assistant
+        </p>
+
         <p onClick={logout}>
           🚪 Logout
         </p>
+
       </div>
 
       <div className="main-content">
+
         <div
           style={{
             background:
@@ -99,46 +122,37 @@ function Dashboard() {
             marginBottom: "25px"
           }}
         >
+
           <h1>
             Welcome Back, {user?.name || "Candidate"} 👋
           </h1>
 
           <p>
-            Manage jobs, applications and profile from
-            your dashboard.
+            Manage jobs, applications and profile from your dashboard.
           </p>
+
         </div>
 
         <div className="cards">
+
           <div className="card">
             <h3>📌 Total Jobs</h3>
-
             <h2>{totalJobs}</h2>
-
-            <p>
-              Available jobs in portal
-            </p>
+            <p>Available jobs in portal</p>
           </div>
 
           <div className="card">
             <h3>📄 Applications</h3>
-
             <h2>{totalApplications}</h2>
-
-            <p>
-              Jobs applied by you
-            </p>
+            <p>Jobs applied by you</p>
           </div>
 
           <div className="card">
             <h3>⭐ Profile Status</h3>
-
             <h2>{profileStatus}%</h2>
-
-            <p>
-              Profile completed
-            </p>
+            <p>Profile completed</p>
           </div>
+
         </div>
 
         <div
@@ -148,24 +162,23 @@ function Dashboard() {
             marginTop: "25px"
           }}
         >
+
           <h3>👤 User Information</h3>
 
           <br />
 
           <p>
-            <strong>Name:</strong>{" "}
-            {user?.name || "Not Updated"}
+            <strong>Name:</strong> {user?.name}
           </p>
 
           <p>
-            <strong>Email:</strong>{" "}
-            {user?.email}
+            <strong>Email:</strong> {user?.email}
           </p>
 
           <p>
-            <strong>Role:</strong>{" "}
-            {user?.role}
+            <strong>Role:</strong> {user?.role}
           </p>
+
         </div>
 
         <div
@@ -175,6 +188,7 @@ function Dashboard() {
             marginTop: "25px"
           }}
         >
+
           <h3>⚡ Quick Actions</h3>
 
           <br />
@@ -214,9 +228,23 @@ function Dashboard() {
           >
             Profile
           </button>
+
+          &nbsp;&nbsp;
+
+          <button
+            onClick={() =>
+              navigate("/assistant")
+            }
+          >
+            🤖 AI Assistant
+          </button>
+
         </div>
+
       </div>
+
     </div>
+
   );
 }
 
