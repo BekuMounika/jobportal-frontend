@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { askGemini } from "../services/gemini";
 
 function CareerAssistant() {
 
@@ -7,22 +8,49 @@ function CareerAssistant() {
 
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const askAI = () => {
+  const askAI = async () => {
 
     if (!question.trim()) {
       alert("Please enter a question");
       return;
     }
 
-    setAnswer(
-      "AI Assistant Response: " + question
-    );
+    try {
+
+      setLoading(true);
+      setAnswer("");
+
+      const response = await askGemini(question);
+
+      setAnswer(response);
+
+    } catch (error) {
+
+      console.error("Gemini Error:", error);
+
+      setAnswer(
+        "Error: " +
+        (error.message || "Unable to get AI response")
+      );
+
+    } finally {
+
+      setLoading(false);
+
+    }
   };
 
   return (
 
-    <div style={{ padding: "30px" }}>
+    <div
+      style={{
+        padding: "30px",
+        minHeight: "100vh",
+        background: "#f1f5f9"
+      }}
+    >
 
       <button
         onClick={() => navigate("/dashboard")}
@@ -39,19 +67,29 @@ function CareerAssistant() {
         ← Back To Dashboard
       </button>
 
-      <h1>🤖 AI Career Assistant</h1>
+      <h1
+        style={{
+          marginBottom: "20px",
+          color: "#1e293b"
+        }}
+      >
+        🤖 AI Career Assistant
+      </h1>
 
       <textarea
-        rows="5"
+        rows="6"
         value={question}
         onChange={(e) =>
           setQuestion(e.target.value)
         }
+        placeholder="Ask anything about careers, Java, React, Spring Boot, interviews..."
         style={{
           width: "100%",
-          padding: "10px"
+          padding: "15px",
+          borderRadius: "10px",
+          border: "1px solid #cbd5e1",
+          fontSize: "16px"
         }}
-        placeholder="Ask a career question..."
       />
 
       <br />
@@ -59,8 +97,9 @@ function CareerAssistant() {
 
       <button
         onClick={askAI}
+        disabled={loading}
         style={{
-          padding: "10px 20px",
+          padding: "12px 25px",
           background: "#2563eb",
           color: "white",
           border: "none",
@@ -68,28 +107,30 @@ function CareerAssistant() {
           cursor: "pointer"
         }}
       >
-        Ask AI
+        {loading ? "Thinking..." : "Ask AI"}
       </button>
 
       <br />
       <br />
 
-      <h3>Response</h3>
+      <h3 style={{ color: "#1e293b" }}>
+        Response
+      </h3>
 
       <div
         style={{
           background: "white",
           padding: "20px",
           borderRadius: "10px",
-          boxShadow:
-            "0 2px 8px rgba(0,0,0,0.1)"
+          boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
+          minHeight: "120px",
+          whiteSpace: "pre-wrap"
         }}
       >
         {answer}
       </div>
 
     </div>
-
   );
 }
 
